@@ -20,9 +20,13 @@ body {
 }
 
 header {
-  min-height: 20dvh;
+  min-height: 200px;
   margin-top: 5dvh;
   font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: space-around;
   h1 {
     margin: 0;
     font-family: "SUSE", sans-serif;

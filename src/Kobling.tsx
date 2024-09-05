@@ -4,9 +4,10 @@ import "./Kobling.css";
 
 export interface KoblingProps {
   url: string;
+  tittel?: string;
 }
 
-function Kobling({ url }: KoblingProps) {
+function Kobling({ url, tittel }: KoblingProps) {
   const bareUrl = url.replace(/(^\w+:|^)\/\//, "");
   const domene =
     /(?:[-a-zA-Z0-9@:%_+~.#=]{2,256}\.)?([-a-zA-Z0-9@:%_+~#=]*)\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_+.~#?&//=]*)/g.exec(
@@ -49,7 +50,7 @@ function Kobling({ url }: KoblingProps) {
             width={"64px"}
           />
         </Box>
-        <span>{domene[1] || <br />}</span>
+        <span>{tittel || domene[1] || <i>undefined</i>}</span>
       </VStack>
     </Box>
   );
