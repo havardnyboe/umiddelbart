@@ -32,7 +32,7 @@ function App() {
         <header>
           <div>
             <h1>umiddelbart</h1>
-            <img src="src/assets/bart.svg" alt="bart" width={"128px"} />
+            <img src="/bart.svg" alt="bart" width={"128px"} />
           </div>
         </header>
         <HGrid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
