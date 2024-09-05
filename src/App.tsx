@@ -1,20 +1,14 @@
-import { Box, Button, HGrid, Link } from "@navikt/ds-react";
-import "./App.css";
-import Kobling from "./Kobling";
 import { useRef, useState } from "react";
+import { Box, Button, HGrid, HStack, Link } from "@navikt/ds-react";
+import { useLocalStorage } from "usehooks-ts";
 import NyFavorittModal from "./NyFavorittModal";
+import Kobling, { KoblingProps } from "./Kobling";
+import "./App.css";
 
 function App() {
-  const [favoritter, setFavoritter] = useState([
-    { url: "https://nav.no" },
-    { url: "https://skatteetaten.no", tittel: "skatt" },
-    { url: "https://dagenidag.com" },
-    { url: "https://cloudflare.com" },
-    { url: "https://www.dagsdato.no" },
-    { url: "https://yr.no" },
-    { url: "https://javalin.io" },
-    { url: "" },
-  ]);
+  const [favoritter, setFavoritter, fjernFavoritter] = useLocalStorage<
+    KoblingProps[]
+  >("favoritter", []);
 
   const nyFavorittModal = useRef<HTMLDialogElement>(null);
   const [nyFavorittUrl, setNyFavorittUrl] = useState("");
@@ -41,13 +35,22 @@ function App() {
           ))}
         </HGrid>
         <Box margin={"10"}>
-          <Button
-            type="button"
-            variant="primary-neutral"
-            onClick={() => nyFavorittModal.current?.showModal()}
-          >
-            Legg til favoritt
-          </Button>
+          <HStack justify={"center"} align={"center"} gap={"4"}>
+            <Button
+              type="button"
+              variant="primary-neutral"
+              onClick={() => nyFavorittModal.current?.showModal()}
+            >
+              Legg til favoritt
+            </Button>
+            <Button
+              type="button"
+              variant="danger"
+              onClick={() => fjernFavoritter()}
+            >
+              Slett favoritter
+            </Button>
+          </HStack>
           <NyFavorittModal
             elementRef={nyFavorittModal}
             tittel={nyFavorittTittel}
