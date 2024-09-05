@@ -1,0 +1,9 @@
+.koblingContainer {
+  &:hover {
+    background-color: #F7F7F7;
+  }
+}
+
+.koblingLogo {
+  background-color: #FAFAFA;
+}

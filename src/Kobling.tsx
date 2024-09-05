@@ -1,5 +1,6 @@
 import { Box, VStack } from "@navikt/ds-react";
 import "react";
+import "./Kobling.css";
 
 interface KoblingProps {
   url: string;
@@ -12,34 +13,43 @@ function Kobling({ url }: KoblingProps) {
       url
     ) || "";
 
+  const padding = "6";
+
   return (
     <Box
-      as={"div"}
-      className="kobling"
-      margin={"2"}
-      shadow="small"
-      borderColor="border-default"
-      borderRadius={"large"}
+      as={"a"}
+      href={url}
+      className="koblingContainer"
+      padding={padding}
+      borderRadius={"xlarge"}
     >
       <VStack
-        height={"168px"}
-        width={"168px"}
-        href={url}
-        as={"a"}
+        height={"128px"}
+        width={"108px"}
         align={"center"}
         justify={"space-evenly"}
-        padding={"2"}
+        padding={"0"}
       >
-        <img
-          src={
-            !(url == "")
-              ? `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${bareUrl}&size=128`
-              : "https://upload.wikimedia.org/wikipedia/commons/8/8d/Globe_smoke_rounded.svg"
-          }
-          alt={url}
-          width={"100px"}
-        />
-        <span>{domene[1]}</span>
+        <Box
+          as={"div"}
+          className="koblingLogo"
+          shadow="small"
+          borderColor="border-default"
+          borderRadius={"xlarge"}
+          padding={padding}
+          margin={"2"}
+        >
+          <img
+            src={
+              !(url == "")
+                ? `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${bareUrl}&size=128`
+                : "https://upload.wikimedia.org/wikipedia/commons/8/8d/Globe_smoke_rounded.svg"
+            }
+            alt={url}
+            width={"64px"}
+          />
+        </Box>
+        <span>{domene[1] || <br />}</span>
       </VStack>
     </Box>
   );
