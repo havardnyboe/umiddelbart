@@ -41,6 +41,7 @@ function NyFavorittModal({
             type="url"
             size="medium"
             onChange={() => setUrl(urlInput.current?.value || "")}
+            value={url}
           />
           <TextField
             ref={tittelInput}

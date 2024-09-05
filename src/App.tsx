@@ -11,12 +11,14 @@ function App() {
   >("favoritter", []);
 
   const nyFavorittModal = useRef<HTMLDialogElement>(null);
-  const [nyFavorittUrl, setNyFavorittUrl] = useState("");
+  const [nyFavorittUrl, setNyFavorittUrl] = useState("https://");
   const [nyFavorittTittel, setNyFavorittTittel] = useState("");
 
   function nyKobling(url: string, tittel?: string) {
     console.log("Legger til favoritt");
     setFavoritter((prev) => [...prev, { url: url, tittel: tittel }]);
+    setNyFavorittUrl("https://");
+    setNyFavorittTittel("");
     console.log(favoritter);
   }
 
