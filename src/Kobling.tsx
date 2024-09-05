@@ -2,7 +2,7 @@ import { Box, VStack } from "@navikt/ds-react";
 import "react";
 import "./Kobling.css";
 
-interface KoblingProps {
+export interface KoblingProps {
   url: string;
 }
 

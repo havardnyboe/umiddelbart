@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
-  height: 100dvh;
+  height: 99dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,8 +11,13 @@
 a {
   font-weight: 500;
   text-decoration: inherit;
+  span {
+    color: #213547;
+  }
+  &:hover {
+    span {
+      color: #213547c8;
+    }
+  }
 }
 
-span {
-  color: #213547;
-}
