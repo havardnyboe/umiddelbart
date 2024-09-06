@@ -7,7 +7,7 @@ interface ModalProps {
   url: string;
   setTittel: React.Dispatch<React.SetStateAction<string>>;
   setUrl: React.Dispatch<React.SetStateAction<string>>;
-  nyFavoritt(url: string, tittel?: string): void;
+  nyFavoritt(url: string, tittel?: string, bilde?: string): void;
 }
 
 function NyFavorittModal({
@@ -20,10 +20,11 @@ function NyFavorittModal({
 }: ModalProps) {
   const urlInput = useRef<HTMLInputElement>(null);
   const tittelInput = useRef<HTMLInputElement>(null);
+  const bildeInput = useRef<HTMLInputElement>(null);
 
   function leggTil(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    nyFavoritt(url, tittel);
+    nyFavoritt(url, tittel, bildeInput.current?.value);
   }
 
   return (
@@ -40,11 +41,17 @@ function NyFavorittModal({
           />
           <TextField
             ref={tittelInput}
-            label="Tittel"
+            label="Tittel (Valgfri)"
             type="text"
             size="medium"
             placeholder={tittel}
             onKeyUp={() => setTittel(tittelInput.current?.value || "")}
+          />
+          <TextField
+            ref={bildeInput}
+            label="Bilde (Valgfri)"
+            type="text"
+            size="medium"
           />
         </Modal.Body>
         <Modal.Footer>

@@ -5,14 +5,17 @@ import "./Kobling.css";
 export interface KoblingProps {
   url: string;
   tittel?: string;
+  bilde?: string;
 }
 
-function Kobling({ url, tittel }: KoblingProps) {
+function Kobling({ url, tittel, bilde }: KoblingProps) {
   const bareUrl = url.replace(/(^\w+:|^)\/\//, "");
   const domene =
     /(?:[-a-zA-Z0-9@:%_+~.#=]{2,256}\.)?([-a-zA-Z0-9@:%_+~#=]*)\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_+.~#?&//=]*)/g.exec(
       url
     ) || "";
+
+  console.log("bildeURL:", bilde);
 
   return (
     <>
@@ -33,9 +36,9 @@ function Kobling({ url, tittel }: KoblingProps) {
           >
             <img
               src={
-                !(url == "")
-                  ? `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${bareUrl}&size=128`
-                  : "https://upload.wikimedia.org/wikipedia/commons/8/8d/Globe_smoke_rounded.svg"
+                bilde
+                  ? bilde
+                  : `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${bareUrl}&size=128`
               }
               alt={url}
               width={"64px"}

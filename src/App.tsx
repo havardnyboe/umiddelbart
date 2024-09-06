@@ -15,9 +15,12 @@ function App() {
   const [nyFavorittUrl, setNyFavorittUrl] = useState("https://");
   const [nyFavorittTittel, setNyFavorittTittel] = useState("");
 
-  function nyKobling(url: string, tittel?: string) {
+  function nyKobling(url: string, tittel?: string, bilde?: string) {
     console.log("Legger til favoritt");
-    setFavoritter((prev) => [...prev, { url: url, tittel: tittel }]);
+    setFavoritter((prev) => [
+      ...prev,
+      { url: url, tittel: tittel, bilde: bilde },
+    ]);
     setNyFavorittUrl("https://");
     setNyFavorittTittel("");
     console.log(favoritter);
@@ -45,7 +48,12 @@ function App() {
         <HGrid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
           <Draggable onPosChange={getChangedPos}>
             {favoritter.map((kobling, idx) => (
-              <Kobling key={idx} url={kobling.url} tittel={kobling.tittel} />
+              <Kobling
+                key={idx}
+                url={kobling.url}
+                tittel={kobling.tittel}
+                bilde={kobling.bilde}
+              />
             ))}
           </Draggable>
         </HGrid>
