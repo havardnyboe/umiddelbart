@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Box, Button, HGrid, HStack, Link } from "@navikt/ds-react";
 import { useLocalStorage } from "usehooks-ts";
+import { Draggable } from "react-drag-reorder";
 import NyFavorittModal from "./NyFavorittModal";
 import Kobling, { KoblingProps } from "./Kobling";
 import "./App.css";
@@ -22,6 +23,15 @@ function App() {
     console.log(favoritter);
   }
 
+  const getChangedPos = (currentPos: number, newPos: number) => {
+    console.log(currentPos, newPos);
+    const nyFavoritter = favoritter;
+    const temp = nyFavoritter[newPos];
+    nyFavoritter[newPos] = nyFavoritter[currentPos];
+    nyFavoritter[currentPos] = temp;
+    setFavoritter(nyFavoritter);
+  };
+
   return (
     <>
       <main>
@@ -33,9 +43,11 @@ function App() {
         </header>
 
         <HGrid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
-          {favoritter.map((kobling, idx) => (
-            <Kobling key={idx} url={kobling.url} tittel={kobling.tittel} />
-          ))}
+          <Draggable onPosChange={getChangedPos}>
+            {favoritter.map((kobling, idx) => (
+              <Kobling key={idx} url={kobling.url} tittel={kobling.tittel} />
+            ))}
+          </Draggable>
         </HGrid>
 
         <Box margin={"10"}>
@@ -51,6 +63,7 @@ function App() {
               type="button"
               variant="danger"
               onClick={() => fjernFavoritter()}
+              disabled
             >
               Slett favoritter
             </Button>

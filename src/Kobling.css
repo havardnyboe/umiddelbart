@@ -2,9 +2,15 @@
   border-radius: var(--a-border-radius-xlarge);
 
   a {
+    display: block;
     font-weight: 500;
     text-decoration: inherit;
     color: #213547;
+    
+    span {
+      position: relative;
+      top: 0.25em;
+    }
   }
 
   &:hover {
@@ -12,6 +18,7 @@
     background-color: #f7f7f7;
     text-decoration: underline;
   }
+
 
   .koblingLogo {
     background-color: #ffffff;

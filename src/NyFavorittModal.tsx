@@ -1,5 +1,5 @@
 import { Button, Modal, TextField } from "@navikt/ds-react";
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useRef } from "react";
 
 interface ModalProps {
   elementRef: React.RefObject<HTMLDialogElement>;
@@ -20,11 +20,6 @@ function NyFavorittModal({
 }: ModalProps) {
   const urlInput = useRef<HTMLInputElement>(null);
   const tittelInput = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    console.log(tittel);
-    console.log(url);
-  }, [tittel, url]);
 
   function leggTil(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
