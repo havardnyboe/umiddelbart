@@ -1,7 +1,11 @@
 .koblingContainer {
-  font-weight: 500;
-  text-decoration: inherit;
-  color: #213547;
+  border-radius: var(--a-border-radius-xlarge);
+
+  a {
+    font-weight: 500;
+    text-decoration: inherit;
+    color: #213547;
+  }
 
   &:hover {
     color: #0c141a;
@@ -11,5 +15,10 @@
 
   .koblingLogo {
     background-color: #ffffff;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

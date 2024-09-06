@@ -31,11 +31,13 @@ function App() {
             <img src="/bart.svg" alt="bart" width={"128px"} />
           </div>
         </header>
+
         <HGrid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
           {favoritter.map((kobling, idx) => (
             <Kobling key={idx} url={kobling.url} tittel={kobling.tittel} />
           ))}
         </HGrid>
+
         <Box margin={"10"}>
           <HStack justify={"center"} align={"center"} gap={"4"}>
             <Button
@@ -53,6 +55,7 @@ function App() {
               Slett favoritter
             </Button>
           </HStack>
+
           <NyFavorittModal
             elementRef={nyFavorittModal}
             tittel={nyFavorittTittel}
@@ -63,6 +66,7 @@ function App() {
           />
         </Box>
       </main>
+
       <footer>
         Laget med ❤️ av{" "}
         <Link href="http://github.com/havardnyboe">havardnyboe</Link>. Inspirert
