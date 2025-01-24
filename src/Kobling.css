@@ -1,38 +1,24 @@
 .koblingContainer {
   border-radius: var(--a-border-radius-xlarge);
+  width: 200px;
+  height: 110px;
+  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
   a {
-    display: block;
-    font-weight: 500;
     text-decoration: inherit;
-    color: #213547;
-    
+    color: #f0f0f0;
     span {
-      position: relative;
-      top: 0.25em;
-      display: block;
-      width: 120px;
-      padding: 0 4px;
-      text-overflow: clip;
-      white-space: nowrap;
-      overflow: hidden;
+      min-width: 120px;
     }
   }
 
   &:hover {
     color: #0c141a;
-    background-color: #f7f7f7;
+    background-color: #1a2b3c;
     text-decoration: underline;
-  }
-
-
-  .koblingLogo {
-    background-color: #ffffff;
-    width: 96px;
-    height: 96px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

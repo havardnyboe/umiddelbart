@@ -1,18 +1,9 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 body {
   margin: 0;
   display: flex;
   place-items: center;
+  color: #f0f0f0;
+  background-color: #2b3a4a;
 }
 
 header {
@@ -29,10 +20,16 @@ header {
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
+
   }
   img {
     position: relative;
     top: -20px;
     scale: 90%;
   }
+}
+
+footer {
+  font-size: smaller;
+  color: #b0b0b0;
 }

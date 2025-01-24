@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Box, Button, HGrid, HStack, Link } from "@navikt/ds-react";
+import { useRef, useState, useEffect } from "react";
+import { Box, Button, HStack, Link } from "@navikt/ds-react";
 import { useLocalStorage } from "usehooks-ts";
 import { Draggable } from "react-drag-reorder";
 import NyFavorittModal from "./NyFavorittModal";
@@ -14,6 +14,29 @@ function App() {
   const nyFavorittModal = useRef<HTMLDialogElement>(null);
   const [nyFavorittUrl, setNyFavorittUrl] = useState("https://");
   const [nyFavorittTittel, setNyFavorittTittel] = useState("");
+  const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.metaKey || event.ctrlKey) {
+        setIsDeleteEnabled(true);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (!event.metaKey && !event.ctrlKey) {
+        setIsDeleteEnabled(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
 
   function nyKobling(url: string, tittel?: string, bilde?: string) {
     console.log("Legger til favoritt");
@@ -45,18 +68,13 @@ function App() {
           </div>
         </header>
 
-        <HGrid columns={{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6 }}>
+        <HStack justify={"center"} align={"center"} gap={"2"}>
           <Draggable onPosChange={getChangedPos}>
             {favoritter.map((kobling, idx) => (
-              <Kobling
-                key={idx}
-                url={kobling.url}
-                tittel={kobling.tittel}
-                bilde={kobling.bilde}
-              />
+              <Kobling key={idx} url={kobling.url} tittel={kobling.tittel} />
             ))}
           </Draggable>
-        </HGrid>
+        </HStack>
 
         <Box margin={"10"}>
           <HStack justify={"center"} align={"center"} gap={"4"}>
@@ -71,7 +89,7 @@ function App() {
               type="button"
               variant="danger"
               onClick={() => fjernFavoritter()}
-              disabled
+              disabled={!isDeleteEnabled}
             >
               Slett favoritter
             </Button>
